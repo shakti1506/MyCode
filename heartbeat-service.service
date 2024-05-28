@@ -1,0 +1,20 @@
+[Unit]
+Description=Heartbeat service to fetch server access logs and send to elastic.
+Documentation=https://www.elastic.co/products/beats/heartbeat
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+
+UMask=0027
+Environment="BEAT_LOG_OPTS="
+Environment="BEAT_CONFIG_OPTS=-c /give path of your yml file"
+Environment="BEAT_PATH_OPTS=--path.home /give path of hearbeat binarys downloaded --path.config /give path of the folder where yml file located --path.data /path of the folder where yml kept and then add /data to create data folder --path.logs /ath of the folder where yml kept and then add /log for creating log folder"
+ExecStart=/give path of hearbeat binarys downloaded/heartbeat --environment systemd $BEAT_LOG_OPTS $BEAT_CONFIG_OPTS $BEAT_PATH_OPTS
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+
+
