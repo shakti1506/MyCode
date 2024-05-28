@@ -1,87 +1,11 @@
 heartbeat.monitors:
 - type: http
   schedule: '@every 5m'  # Adjust the schedule as per your requirements
-  urls: ["https://india.remoteaccess.philips.com"]
+  urls: ["https://yyyy.xxxx.com"]
   timeout: 15s
   check.response.status: [200,302]
-  name: "IndiaVPNGateway"
+  name: "Test_Availablity"
 
-- type: http
-  schedule: '@every 5m'  # Adjust the schedule as per your requirements
-  urls: ["https://india2.remoteaccess.philips.com"]
-  timeout: 15s
-  check.response.status: [200,302]
-  name: "India2VPNGateway"
-
-- type: http
-  schedule: '@every 5m'  # Adjust the schedule as per your requirements
-  urls: ["https://emea.remoteaccess.philips.com"]
-  timeout: 15s
-  check.response.status: [200,302]
-  name: "EMEA1VPNGateway"
-
-- type: http
-  schedule: '@every 5m'  # Adjust the schedule as per your requirements
-  urls: ["https://emea5.remoteaccess.philips.com"]
-  timeout: 15s
-  check.response.status: [200,302]
-  name: "EMEA5VPNGateway"
-
-- type: http
-  schedule: '@every 5m'  # Adjust the schedule as per your requirements
-  urls: ["https://amec.remoteaccess.philips.com"]
-  timeout: 15s
-  check.response.status: [200,302]
-  name: "AMEC1VPNGateway"
-
-- type: http
-  schedule: '@every 5m'  # Adjust the schedule as per your requirements
-  urls: ["https://amec3.remoteaccess.philips.com"]
-  timeout: 15s
-  check.response.status: [200,302]
-  name: "AMEC3VPNGateway"
-
-- type: http
-  schedule: '@every 5m'  # Adjust the schedule as per your requirements
-  urls: ["https://japan.remoteaccess.philips.com"]
-  timeout: 15s
-  check.response.status: [200,302]
-  name: "JapanVPNGateway"
-
-- type: http
-  schedule: '@every 5m'  # Adjust the schedule as per your requirements
-  urls: ["https://china.remoteaccess.philips.com.cn"]
-  timeout: 15s
-  check.response.status: [200,302]
-  name: "China1VPNGateway"
-
-- type: http
-  schedule: '@every 5m'  # Adjust the schedule as per your requirements
-  urls: ["https://china2.remoteaccess.philips.com.cn"]
-  timeout: 15s
-  check.response.status: [200,302]
-  name: "China2VPNGateway"
-
-- type: http
-  schedule: '@every 5m'  # Adjust the schedule as per your requirements
-  urls: ["https://israel.remoteaccess.philips.com"]
-  timeout: 15s
-  check.response.status: [200,302]
-  name: "IsraelVPNGateway"
-
-- type: http
-  schedule: '@every 5m'  # Adjust the schedule as per your requirements
-  urls: ["https://apac.remoteaccess.philips.com"]
-  timeout: 15s
-  check.response.status: [200,302]
-  name: "APAC1VPNGateway"
-
-- type: http
-  schedule: '@every 5m'  # Adjust the schedule as per your requirements
-  urls: ["https://apac2.remoteaccess.philips.com"]
-  timeout: 15s
-  check.response.status: [200,302]
-  name: "APAC2VPNGateway"
 
 setup.template.settings:
   index.number_of_shards: 1
@@ -89,31 +13,28 @@ setup.template.settings:
   setup.template.enabled: false
   setup.ilm.enabled: false
 
-#output.logstash:
-#  hosts: ["10.65.19.38:5044"]
 setup.kibana:
-cloud.id: mec_poc_deployment:dXMtZWFzdC0xLmF3cy5mb3VuZC5pbyRkMTg1NTM1YTZkY2M0Yjg4OGJkYWJiYTNmOGQ2YTk3ZSRkYTVjMGRiM2ZhYjM0ZTc1YmJmZWY0MDg3MzJkYmVhOQ==
-output.elasticsearch.index: "maaps_prod_vpngateway"
-output.elasticsearch.username: "maaps_appdynamics_user"
-output.elasticsearch.password: "welcome1"
+cloud.id: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+output.elasticsearch.index: "index_hearbeat_test"
+output.elasticsearch.username: "Test_user"
+output.elasticsearch.password: "xxxxx"
 output.elasticsearch.allow_older_versions: true
-setup.template.name: "maaps_prod_vpngateway_template"
-setup.template.pattern: "maaps_prod_vpngateway"
+setup.template.name: "index_hearbeat_test_template"
+setup.template.pattern: "index_hearbeat_test"
 
 processors:
   - add_fields:
     fields: 
       target: system_info
-      service_id: 'se000011'
-      service_name: 'vpnGateway'
+      service_id: 'Service123'
+      service_name: 'TestServer'
       monitoring_type: 'Availablity'
-      service_offering: 'vpnGateway availability'
+      service_offering: 'Server availability'
       configuration_item: ''
       Environment_Type: 'Prod'
-      Application_Name: 'vpnGateway availability monitoring'
-      Partner_id: 'Dxc'
-      Platform: ''
-      Tribe: ''
+      Application_Name: 'Test Server'
+      
+    
 
 logging.level: info
 logging.to_files: true
